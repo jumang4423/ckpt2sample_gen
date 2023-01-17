@@ -2,7 +2,7 @@ import torch
 from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 import os
 import sys
-import gradio as gr
+import gradio
 import random
 from riffusion.img2audio import image_to_audio
 
@@ -59,5 +59,5 @@ pipe = StableDiffusionPipeline.from_pretrained(
 pipe = pipe.to(get_backend())
 pipe.enable_attention_slicing()
 
-demo = gr.Interface(fn=genAudio, inputs=["text", "text"], outputs="audio")
+demo = gradio.Interface(fn=genAudio, inputs=["text", "text"], outputs=["audio"])
 demo.launch(share=True)
