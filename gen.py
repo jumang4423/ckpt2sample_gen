@@ -25,20 +25,17 @@ def genAudio(prompt, negative_prompt):
         height=512, width=512,
     ).images[0]
     img_file = "./temp.png"
+    audio_file = "./temp.wav"
     image.save(img_file)
-    image_to_audio(image=img_file, audio=wav_out)
+    image_to_audio(image=img_file, audio=audio_file)
 
-    return wav_out
+    return audio_file
 
 
 
 # python gen.py <prompt string> <wav out filepath> <diffuser model path>
 # args from command line
-prompt = sys.argv[1]
-wav_out = sys.argv[2]
-model_path = sys.argv[3]
-print("prompt: ", prompt)
-print("wav_out: ", wav_out)
+model_path = sys.argv[1]
 print("model_path: ", model_path)
 
 scheduler = DPMSolverMultistepScheduler(
